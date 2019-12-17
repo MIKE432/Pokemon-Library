@@ -56,6 +56,7 @@
 		2718257F23A947FA0030A4EF /* PokemonLibrary */ = {
 			isa = PBXGroup;
 			children = (
+				2718259423A949250030A4EF /* Models */,
 				2718258023A947FA0030A4EF /* AppDelegate.swift */,
 				2718258223A947FA0030A4EF /* SceneDelegate.swift */,
 				2718258423A947FA0030A4EF /* ContentView.swift */,
@@ -73,6 +74,13 @@
 				2718258923A947FB0030A4EF /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		2718259423A949250030A4EF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
