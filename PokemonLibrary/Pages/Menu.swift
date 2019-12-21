@@ -10,6 +10,7 @@ import SwiftUI
 
 struct Menu: View {
     var body: some View {
+        
         Form {
             NavigationLink(destination: PokemonList()) {
                 Text("Pokemons")
@@ -17,9 +18,7 @@ struct Menu: View {
             
             NavigationLink(destination: AbilitiesList()) {
                 Text("Abilities")
-
             }
-            
         }
     }
 }

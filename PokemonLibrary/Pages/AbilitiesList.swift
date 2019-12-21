@@ -10,7 +10,6 @@ import SwiftUI
 
 struct AbilitiesList: View {
     @State var networkingManager = NetworkingManager()
-    
     var body: some View {
         List(networkingManager.abilityList.results, id: \.name) { ability in
             Text(ability.name.capitalized)

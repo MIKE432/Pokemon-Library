@@ -13,7 +13,10 @@ struct PokemonList: View {
     
     var body: some View {
         List(networkingManager.pokemonList.results, id: \.name) { pokemon in
-            Text(pokemon.name.capitalized)
+            NavigationLink(destination: PokemonDetails(pokemon.name)) {
+                Text(pokemon.name.capitalized)
+            }
+ 
             
             .navigationBarTitle("Pokemons")
         }

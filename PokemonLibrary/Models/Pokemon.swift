@@ -27,45 +27,39 @@ struct AbilityAPIList: Decodable {
     var results: [AbilityListEntry]
 }
 
-struct Pokemon: Codable {
-    let id: Int
-    let name: String
-    let abilities: [Ability]
-    let height: Int
-    let weight: Int
+struct Pokemon: Decodable {
+    var name: String
+    var abilities: [Abilities]
+    var height: Int
+    var weight: Int
+    var base_experience: Int
+    var sprites: Sprites
 }
 
 
-struct Ability: Codable {
-    let id: Int
-    let name: String
-    let url: String
-    let slot: Int
+struct Abilities: Decodable, Hashable {
+    var ability: AbilityURL
+    var slot: Int
 }
 
+struct AbilityURL: Decodable, Hashable {
+    var name: String
+    var url: String
+}
 
-//
-//struct Pokemon: Hashable {
-//    let id: UUID
-//    let name: String
-//    let abilities: Abilities
-//    var height: Int
-//    var weight: Int
-//
-//    init(_ name: String, _ abilities: Abilities, height: Int, weight: Int) {
-//        self.abilities = abilities
-//        self.height = height
-//        self.name = name
-//        self.weight = weight
-//        self.id = UUID()
-//    }
-//
-//    func hash(into hasher: inout Hasher) {
-//        hasher.combine(id)
-//    }
-//
-//    static func == (lhs: Pokemon, rhs: Pokemon) -> Bool {
-//        return lhs.id == rhs.id
-//    }
-//
-//}
+struct Ability: Decodable {
+    var name: String
+    var effect_entries: [EffectEntries]
+}
+
+struct EffectEntries: Decodable {
+    var effect: String
+    var short_effect: String
+}
+
+struct Sprites: Decodable {
+    var back_default: String
+    var front_default: String
+    var back_shiny: String
+    var front_shiny: String
+}

@@ -19,13 +19,18 @@ class NetworkingManager: ObservableObject {
         }
     }
     
-    
     var abilityList = AbilityAPIList(results: []) {
         didSet {
             didChange.send(self)
         }
     }
     
+    var actualPokemon = Pokemon(name: "", abilities: [], height: 0, weight: 0, base_experience: 0, sprites: Sprites(back_default: "", front_default: "", back_shiny: "", front_shiny: "")) {
+        didSet {
+            didChange.send(self)
+        }
+    }
+
     func getPokemons(_ offset: Int) {
         guard let url = URL(string: "https://pokeapi.co/api/v2/pokemon?limit=\(offset)") else {
             return
@@ -61,5 +66,21 @@ extension NetworkingManager {
                    }
                    
                }.resume()
+    }
+    
+    func getPokemon(_ name: String) {
+        guard let url = URL(string: "https://pokeapi.co/api/v2/pokemon/\(name)") else {
+            return
+        }
+        
+        URLSession.shared.dataTask(with: url) { (data, _, _) in
+            guard let data = data else { return }
+            
+            let actualPokemon = try! JSONDecoder().decode(Pokemon.self, from: data)
+            DispatchQueue.main.async {
+                self.actualPokemon = actualPokemon
+            }
+            
+        }.resume()
     }
 }
